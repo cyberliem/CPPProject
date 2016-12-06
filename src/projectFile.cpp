@@ -9,7 +9,7 @@ projectFile::projectFile()
     fileStatus=file.is_open();
 }
 
-projectFile::projectFile(int truncMode, std::string oFileName);
+projectFile::projectFile(int truncMode, std::string oFileName)
 {
     /*constructor for out file
      *parameter: int truncMode: 1 if the file is to be overwritten
@@ -18,10 +18,10 @@ projectFile::projectFile(int truncMode, std::string oFileName);
      */
     fileName=oFileName;
     if (truncMode==1) {
-        file.open(fileName.c_str(),std::ios:out | std::ios::trunc)
+        file.open(fileName.c_str(),std::ios::out | std::ios::trunc);
     }
     else {
-        file.open(fileName.c_str(),std::ios::out)
+        file.open(fileName.c_str(),std::ios::out);
     }
     fileStatus=file.is_open();
 }

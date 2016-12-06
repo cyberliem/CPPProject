@@ -1,0 +1,39 @@
+# depslib dependency file v1.0
+1480997876 source:/home/cyberliem/CPPassignment/main.cpp
+	<iostream>
+	<stdlib.h>
+	<string>
+	<iomanip>
+	<sstream>
+	<fstream>
+	<math.h>
+	"projectFile.h"
+	"module.h"
+	"student.h"
+
+1480998055 /home/cyberliem/CPPassignment/include/projectFile.h
+	<fstream>
+	<stdlib.h>
+	<iostream>
+
+1480990682 /home/cyberliem/CPPassignment/include/module.h
+
+1481002413 /home/cyberliem/CPPassignment/include/student.h
+	<string>
+	<stdlib.h>
+	<sstream>
+
+1480990682 source:/home/cyberliem/CPPassignment/src/module.cpp
+	"module.h"
+
+1481001486 source:/home/cyberliem/CPPassignment/src/projectFile.cpp
+	"projectFile.h"
+
+1480990682 source:/home/cyberliem/CPPassignment/src/tokenArray.cpp
+	"tokenArray.h"
+
+1480990682 /home/cyberliem/CPPassignment/include/tokenArray.h
+
+1481004335 source:/home/cyberliem/CPPassignment/src/student.cpp
+	"student.h"
+

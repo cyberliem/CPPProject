@@ -4,6 +4,7 @@
 #include <iomanip>
 #include <sstream>
 #include <fstream>
+#include <math.h>
 #include "projectFile.h"
 #include "module.h"
 #include "student.h"
@@ -76,60 +77,56 @@ void validateInput() {
     */
 }
 
-/*module *modules[100] readModule() {
+void readModule(module (&modules)[100]) {
     //first there must be an input file object
-    module *modules[100];
     nModule=0;
-    projectFile sInFile;
+    projectFile *sInFile;
     sInFile=inputRequest("get Module record file name.... \n");
-    while (!eof(sInFile)) {
+    /*while (std::getline(sInFile->file,line)) {
         //create array object from the line of sInfile.
-        tokens=tokenArray(sInFile);
+        modules[nModule]=module(line);
         modules[nModule]= module(tokens);
         nModule++;
     }/
     return(modules);
-    //
-}*/
+    */
+}
 
-student *readStudent() {
+void readStudent(student (&students)[1000]) {
     //first there must be an input file object
     nStudent=0;
     projectFile *sInFile;
-    static student *students[100];
     sInFile=inputRequest("get valid Student record file name.... \n");
     std::string line;
     while (std::getline(sInFile->file,line)) {
         //create array object from the line of sInfile.
-        students[nStudent]= new student(line);
+        students[nStudent]=student(line);
         nStudent++;
     }
-    return(students);
-    //
 }
 
-void displayAttendance(student *students[1000]); {
-    for (i=0; i<nStudent; i++) {
-        std::cout << ("student name %s module name %s attendance %i\% score %d\% \n", student.name, student.atdPercent);
+void displayAttendance(student students[1000]) {
+    for (int i=0; i<nStudent; i++) {
+        std::cout <<"student name "<<students[i].Name<<" module code "<<students[i].mCode<<" attendance "<< students[i].atdnPercentage << "% /n";
     }
 }
 
-void checkDuplicate(student *students[1000]); {
-    control = new bool[nStudent];
-    currentDup= new int[nStudent];
+void checkDuplicate(student students[1000]) {
+    bool control[nStudent];
+    int currentDup[nStudent];
     bool thereisDup=false;
     int nDup=0;
     int i; int j;
-    for (i=0; i<nstudent; i++) {
+    for (i=0; i<nStudent; i++) {
         control[i]=true;
     }
 
-    for (i=0; i<nstudent; i++) {
-        if control(i) {
+    for (i=0; i<nStudent; i++) {
+        if (control[i]) {
             nDup=0;
             currentDup[0]=i;
-            for (j=i+1; j<nstudent; j++)
-                if ((students[i].name=students[j].name) && (students[i].mCode=students[j].mCode)) {
+            for (j=i+1; j<nStudent; j++)
+                if ((students[i].Name.compare(students[j].Name)==0) && ((students[i].mCode.compare(students[j].mCode)==0))) {
                     nDup++;
                     currentDup[nDup]=j;
                     control[j]=false;
@@ -137,7 +134,7 @@ void checkDuplicate(student *students[1000]); {
             if (nDup>0) {
                 thereisDup=true;
                 for (int l=0; l<nDup; l++) {
-                    std::cout <<students[l].toString() << std::endl();
+                    std::cout <<students[l].toString() << std::endl;
                 }
             }
         }
@@ -153,31 +150,33 @@ void checkDuplicate(student *students[1000]); {
 
 int getXpercent(){
     int x;
+    std::string input;
     while (true) {
     system("cls");
     std::cout << "Please choose the cut-off percentage desired";
     std::getline(std::cin, input);
     std::stringstream convertStream(input);
         if (convertStream>> x) {
-            return(nStudent*x/100)
+            return(ceil(nStudent*x/100));
         }
-        else (
-            std::cout << "invalid input, please try again";
+        else {
+            std::cout << "invalid input, please try again \n";
             system("pause");
-        )
+        }
     }
 }
 
-void displayLowest(student *students[1000])) {
-    students.sort();
+void displayLowest(student students[1000]) {
+   /* students.sort();
     int xpercent=getXpercent();
     std::cout "the lowest x percentage of students are";
     for (int i=0; i<=xpercent; i++) {
         std::cout << students[i].toString();
-    }
+    } */
 }
 
-void displayTop5(student *students[1000])) {
+void displayTop5(student students[1000]) {
+    /*
     students.sort();
     int rPerModule[nModule];
     for (int i=0; i<nModule; i++) {
@@ -201,13 +200,13 @@ void displayTop5(student *students[1000])) {
                 }
             }
         }
-    }
+    }*/
 }
 
 
 void process(int choice) {
-    module *modules[100];
-    student *students[1000];
+    module modules[100];
+    student students[1000];
     switch (choice) {
     //open file;
     case 1:
@@ -219,36 +218,35 @@ void process(int choice) {
         break;
     case 3:
         //read module;
-        modules= readModule();
+        readModule(modules);
         break;
     case 4:
         //read student record;
-        students=readStudent();
+        readStudent(students);
         //display Attendance;
         displayAttendance(students);
         break;
     case 5:
 
         //read student record;
-        students=readStudent();
+        readStudent(students);
         ////check Duplicate;
         checkDuplicate(students);
         break;
     case 6:
          //read student record;
-        students=readStudent();
+        readStudent(students);
         //display students record with lowest scores;
         displayLowest(students);
         break;
     case 7:
         //read student record;
-        students=readStudent();
+        readStudent(students);
         //display students record with lowest scores;
         displayTop5(students);
         break;
         //lookup students with highest scores;
     default:
-        students=readStudent();
         std::cout << "Invalid choice, please try again \n";
         system("pause");
     }

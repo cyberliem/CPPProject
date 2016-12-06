@@ -9,11 +9,11 @@ class projectFile
         //constructor for inFile
         projectFile();
         //constructor for outFile with file name and trunc mode
-        projectFile(int trMode, std::string oFileName);
+        projectFile(int truncMode, std::string oFileName);
 
         //destructor
         virtual ~projectFile();
-        std::string* getTokenarray();
+
         std::fstream file;
         std::string fileName;
         bool fileStatus;
