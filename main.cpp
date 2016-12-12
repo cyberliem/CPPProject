@@ -8,6 +8,7 @@
 #include "projectFile.h"
 #include "module.h"
 #include "student.h"
+#include "miscFunc.h"
 
 int nStudent=0;
 int nModule=0;
@@ -15,14 +16,14 @@ int nModule=0;
 projectFile * inputRequest(std::string message){
     static projectFile *sInFile;
     do
-    {   system("cls");
+    {   //system("cls");
         std::cout <<message<< std::endl;
         delete sInFile;
         sInFile=new projectFile();
         if (!sInFile->fileStatus) {
             std::cout <<"There was error opening the file \n";
             std::cout <<"Please retry";
-            system("pause");
+            //system("pause");
         }
     } while (!sInFile->fileStatus);
    return(sInFile);
@@ -81,22 +82,28 @@ void readModule(module (&modules)[100]) {
     //first there must be an input file object
     nModule=0;
     projectFile *sInFile;
-    sInFile=inputRequest("get Module record file name.... \n");
-    /*while (std::getline(sInFile->file,line)) {
+    std::string line;
+    sInFile=inputRequest("\n Get Module record file name.... \n");
+    while (std::getline(sInFile->file,line)) {
         //create array object from the line of sInfile.
         modules[nModule]=module(line);
-        modules[nModule]= module(tokens);
+
         nModule++;
-    }/
-    return(modules);
-    */
+    }
+}
+
+void displayModules(module modules[1000]) {
+    std::cout<<"The modules read from files are: ";
+    for (int i=0; i<nModule; i++) {
+        std::cout<<modules[i].mCode<<" "<<modules[i].Name<<"\n";
+    }
 }
 
 void readStudent(student (&students)[1000]) {
     //first there must be an input file object
     nStudent=0;
     projectFile *sInFile;
-    sInFile=inputRequest("get valid Student record file name.... \n");
+    sInFile=inputRequest("\n Get valid Student record file name.... \n");
     std::string line;
     while (std::getline(sInFile->file,line)) {
         //create array object from the line of sInfile.
@@ -106,8 +113,11 @@ void readStudent(student (&students)[1000]) {
 }
 
 void displayAttendance(student students[1000]) {
+    std::cout<< std::setprecision( 2 );
     for (int i=0; i<nStudent; i++) {
-        std::cout <<"student name "<<students[i].Name<<" module code "<<students[i].mCode<<" attendance "<< students[i].atdnPercentage << "% /n";
+
+        std::cout <<"student name:"<<students[i].Name<<" module code "<<students[i].mCode<<"\n"<<"   Attendance "<< students[i].atdnPercentage << "%"
+                <<" Average score:"<<students[i].avgScore<<"%\n";
     }
 }
 
@@ -121,12 +131,12 @@ void checkDuplicate(student students[1000]) {
         control[i]=true;
     }
 
-    for (i=0; i<nStudent; i++) {
+    for (i=0; i<nStudent-1; i++) {
         if (control[i]) {
             nDup=0;
             currentDup[0]=i;
             for (j=i+1; j<nStudent; j++)
-                if ((students[i].Name.compare(students[j].Name)==0) && ((students[i].mCode.compare(students[j].mCode)==0))) {
+                if ((students[i].sID.compare(students[j].sID)==0) && ((students[i].mCode.compare(students[j].mCode)==0))) {
                     nDup++;
                     currentDup[nDup]=j;
                     control[j]=false;
@@ -134,17 +144,18 @@ void checkDuplicate(student students[1000]) {
             if (nDup>0) {
                 thereisDup=true;
                 for (int l=0; l<nDup; l++) {
-                    std::cout <<students[l].toString() << std::endl;
+                    std::cout <<students[currentDup[l]].toString() << std::endl;
                 }
+                std::cout<< std::endl;
             }
         }
 
     }
     if (thereisDup) {
-        std::cout <<"The records above are duplicated, please check";
+        std::cout <<"The records above are duplicated, please check \n";
     }
     else {
-        std::cout <<"There is no duplicate in the records";
+        std::cout <<"There is no duplicate in the records \n";
     }
 }
 
@@ -152,7 +163,7 @@ int getXpercent(){
     int x;
     std::string input;
     while (true) {
-    system("cls");
+    //system("cls");
     std::cout << "Please choose the cut-off percentage desired";
     std::getline(std::cin, input);
     std::stringstream convertStream(input);
@@ -161,7 +172,7 @@ int getXpercent(){
         }
         else {
             std::cout << "invalid input, please try again \n";
-            system("pause");
+            //system("pause");
         }
     }
 }
@@ -203,6 +214,15 @@ void displayTop5(student students[1000]) {
     }*/
 }
 
+void join(student (&students)[1000],module (&modules)[100], int nStudent, int nModule) {
+    for (int i=0; i<nStudent; i++) {
+        students[i].setMIndex(modules, nModule);
+    }
+    for (int i=0; i<nStudent; i++) {
+        students[i].calculateAvgScr(modules[students[i].moduleIndex].coef);
+
+    }
+}
 
 void process(int choice) {
     module modules[100];
@@ -219,10 +239,16 @@ void process(int choice) {
     case 3:
         //read module;
         readModule(modules);
+        //display Modules
+        displayModules(modules);
         break;
     case 4:
         //read student record;
         readStudent(students);
+        //read module record
+        readModule(modules);
+        //join Student/Modules index
+        join(students, modules, nStudent, nModule);
         //display Attendance;
         displayAttendance(students);
         break;
@@ -248,7 +274,7 @@ void process(int choice) {
         //lookup students with highest scores;
     default:
         std::cout << "Invalid choice, please try again \n";
-        system("pause");
+        //system("pause");
     }
 
 }
@@ -257,7 +283,7 @@ int main(){
     int choice=0;
     std::string input;
     while (choice!=8) {
-        system("cls");
+        //system("cls");
         std::cout << "Welcome to student records management!" << std::endl;
         std::cout << "1.Open input file " << std::endl;
         std::cout << "2.Validate Input File " << std::endl;
@@ -271,13 +297,13 @@ int main(){
         std::getline(std::cin, input);
         std::stringstream convertStream(input);
         if (convertStream>> choice) {
-            std::cout << "Your choice is: " << choice;
-            system("pause");
+            std::cout << "Your choice is: " << choice<< std::endl;
+            //system("pause");
             process(choice);
         }
         else {
             std::cout << "Invalid choice, please try again \n";
-            system("pause");
+            //system("pause");
             choice=0;
         }
     }

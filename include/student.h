@@ -1,8 +1,12 @@
 #ifndef STUDENT_H
 #define STUDENT_H
+#include "miscFunc.h"
+#include "module.h"
 #include <string>
 #include <stdlib.h>
 #include <sstream>
+#include <ctype.h>
+#include <iostream>
 
 class student
 {
@@ -17,6 +21,8 @@ class student
         float atdnPercentage=0;
         float avgScore;
         int scores[4];
+        int moduleIndex;
+        void setMIndex(module (&modules)[100], int nModule);
         std::string toString();
         void calculateAvgScr(int *coEf);
     protected:
@@ -25,4 +31,7 @@ class student
     private:
 };
 
+
 #endif // STUDENT_H
+
+

@@ -3,6 +3,7 @@
 #include <fstream>
 #include <stdlib.h>
 #include <iostream>
+#include <student.h>
 class projectFile
 {
     public:

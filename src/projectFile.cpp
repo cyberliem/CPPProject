@@ -3,7 +3,7 @@
 projectFile::projectFile()
 {
     //constructor for infile;
-    std::cout << "Please enter a file name";
+    std::cout << "Please enter a file name: ";
     std::getline(std::cin, fileName);
     file.open(fileName.c_str(), std::ios::in);
     fileStatus=file.is_open();

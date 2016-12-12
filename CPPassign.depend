@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1480997876 source:/home/cyberliem/CPPassignment/main.cpp
+1481019169 source:/home/cyberliem/CPPassignment/main.cpp
 	<iostream>
 	<stdlib.h>
 	<string>
@@ -10,30 +10,57 @@
 	"projectFile.h"
 	"module.h"
 	"student.h"
+	"miscFunc.h"
 
-1480998055 /home/cyberliem/CPPassignment/include/projectFile.h
+1481011318 /home/cyberliem/CPPassignment/include/projectFile.h
 	<fstream>
 	<stdlib.h>
 	<iostream>
+	<student.h>
 
-1480990682 /home/cyberliem/CPPassignment/include/module.h
-
-1481002413 /home/cyberliem/CPPassignment/include/student.h
+1481012227 /home/cyberliem/CPPassignment/include/module.h
+	"miscFunc.h"
 	<string>
 	<stdlib.h>
 	<sstream>
+	<ctype.h>
+	<iostream>
 
-1480990682 source:/home/cyberliem/CPPassignment/src/module.cpp
+1481013293 /home/cyberliem/CPPassignment/include/student.h
+	"miscFunc.h"
+	"module.h"
+	<string>
+	<stdlib.h>
+	<sstream>
+	<ctype.h>
+	<iostream>
+
+1481011883 source:/home/cyberliem/CPPassignment/src/module.cpp
 	"module.h"
 
-1481001486 source:/home/cyberliem/CPPassignment/src/projectFile.cpp
+1481017689 source:/home/cyberliem/CPPassignment/src/projectFile.cpp
 	"projectFile.h"
 
-1480990682 source:/home/cyberliem/CPPassignment/src/tokenArray.cpp
+1481011350 source:/home/cyberliem/CPPassignment/src/tokenArray.cpp
 	"tokenArray.h"
 
-1480990682 /home/cyberliem/CPPassignment/include/tokenArray.h
+1481011159 /home/cyberliem/CPPassignment/include/tokenArray.h
+	<string>
+	<stdlib.h>
+	<sstream>
+	<ctype.h>
+	<iostream>
 
-1481004335 source:/home/cyberliem/CPPassignment/src/student.cpp
+1481018840 source:/home/cyberliem/CPPassignment/src/student.cpp
 	"student.h"
+
+1481014347 /home/cyberliem/CPPassignment/include/miscFunc.h
+	<string>
+	<stdlib.h>
+	<sstream>
+	<ctype.h>
+	<iostream>
+
+1481014579 source:/home/cyberliem/CPPassignment/src/miscFunc.cpp
+	"miscFunc.h"
 

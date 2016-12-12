@@ -34,15 +34,15 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
+		<Unit filename="include/miscFunc.h" />
 		<Unit filename="include/module.h" />
 		<Unit filename="include/projectFile.h" />
 		<Unit filename="include/student.h" />
-		<Unit filename="include/tokenArray.h" />
 		<Unit filename="main.cpp" />
+		<Unit filename="src/miscFunc.cpp" />
 		<Unit filename="src/module.cpp" />
 		<Unit filename="src/projectFile.cpp" />
 		<Unit filename="src/student.cpp" />
-		<Unit filename="src/tokenArray.cpp" />
 		<Extensions>
 			<code_completion />
 			<envvars />

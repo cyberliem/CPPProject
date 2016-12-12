@@ -1,0 +1,10 @@
+S0001234, Tan ah dog, ICT303-FT07, yes, yes, yes, no, yes, yes, no, no, no, yes, 35, 42, 15, 70
+S0022738, Tan ah horse, ICT303-FT07, yes, yes, yes, no, yes, yes, no, no, no, yes, 35, 32, 10, 37
+S0022738, Tan ah horse, ICT303-FT07, yes, yes, yes, no, yes, yes, no, no, no, yes, 35, 32, 10, 37
+S0022738, Tan ah horse, ICT303-FT07, yes, yes, yes, no, yes, yes, no, no, no, yes, 35, 32, 10, 37
+S0022738, Tan ah horse, ICT303-FT07, yes, yes, yes, no, yes, yes, no, no, no, yes, 35, 32, 10, 37
+S0022738, Tan ah horse, ICT303-FT07, yes, yes, yes, no, yes, yes, no, no, no, yes, 35, 32, 10, 37
+S0001234, Tan ah dog, ICT303-FT07, yes, yes, yes, no, yes, yes, no, no, no, yes, 35, 42, 15, 70
+S0001234, Tan ah dog, ICT303-FT07, yes, yes, yes, no, yes, yes, no, no, no, yes, 35, 42, 15, 70
+S0001234, Tan ah dog, ICT303-FT07, yes, yes, yes, no, yes, yes, no, no, no, yes, 35, 42, 15, 70
+S0001214, Tan ah rabbit, ICT303-FT07, yes, yes, yes, no, yes, yes, no, no, no, yes, 35, 42, 15, 70
